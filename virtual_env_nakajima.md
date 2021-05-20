@@ -14,8 +14,8 @@
 <br />
 
 ## ＜イメージ図＞
-【アプリケーション】→ laravel（5.laravelの導入 / 動作確認）
-【&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ゲストOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】→ CentOS（2. PHPの導入、3. Nginxの導入、4. Mysqlの導入）
+【アプリケーション】→ laravel（5.laravelの導入 / 動作確認）<br />
+【&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ゲストOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】→ CentOS（2. PHPの導入、3. Nginxの導入、4. Mysqlの導入）<br />
 【&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ホストOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】→MacOS（本手順書はMacPCを想定しております。）&nbsp;VirtualBox / vagrant（0. 前提条件、1. 作業用ディレクトリの作成及び初期設定）
 <br />
 
@@ -115,7 +115,7 @@ vagrantの基本設定が記述されているVagrantfileを編集します。
 - ④ vagrant pluginのインストール
 インストールするplugin：vagrant-vbguest<br>
 vagrant-vbguestを使用することによって、boxにインストールされたisoファイルのGuestAddition(ここで使われている仮想OS)を自動的に最新版へ更新してくれます。更新をしないと、Virtualboxがisoファイルを適用外と判断し、エラーが発生してしまう可能性があります。
-<br />
+    <br />
 
   実行コマンド：
   ```
@@ -125,7 +125,7 @@ vagrant-vbguestを使用することによって、boxにインストールさ�
   $ vagrant plugin list
   ```
   vagrant-vbguestのバージョンによっては仮想環境上に共有フォルダであるvagrantフォルダが作成されないケースがあるため、本手順書ではバージョンを指定しております。
-<br />
+    <br />
 
 - ⑤ ゲストOSの起動 / ログイン
 ゲストOSを起動し実際にログインしてみます。
@@ -435,7 +435,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
 
 - ⑥ extra：アクセスをしたら「403 Forbidden」のエラーが発生した場合
 この場合、「SElinux」という機能によって発生しているエラーのため、SElinuxの設定を変更します。
-<br />
+  <br />
 
   実行コマンド：
   ```
@@ -464,7 +464,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
   SElinux自体を止めてしまうと、環境によっては問題が発生してしまうため、SEliunkを止めずに、何かエラーが発生した時にログを記録する設定へ変更しております。
   再度、Vagrantfileにて設定したIPアドレスにアクセスして、laravelのwelcome画面が表示されるか確認してください。
 
-<br />
+  <br />
 
 - ⑦ 認証機能の実装
 laravelに認証機能を実装します。
