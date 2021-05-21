@@ -464,7 +464,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
   $ sudo systemctl start nginx # nginx起動
   $ sudo systemctl start php-fpm # php-fpm起動
   ```
-  SElinux自体を止めてしまうと、環境によっては問題が発生してしまうため、SEliunkを止めずに、何かエラーが発生した時にログを記録する設定へ変更しております。
+  SElinux自体を止めてしまうと、環境によっては問題が発生してしまうため、SElinuxを止めずに、何かエラーが発生した時にログを記録する設定へ変更しております。
   再度、Vagrantfileにて設定したIPアドレスにアクセスして、laravelのwelcome画面が表示されるか確認してください。
 
   <br />
