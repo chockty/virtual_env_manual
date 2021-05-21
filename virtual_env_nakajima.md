@@ -20,11 +20,13 @@
 <br />
 
 ## ＜バージョン一覧＞
-- OS : CentOS 7
-- Language : PHP 7.3
-- Server software : Nginx 1.19.10
-- Database : MySQL 5.7
-- Framework : laravel 6.0
+| 項目 | サービス | バージョン |
+|:-:|:-:|:-:|
+| OS              | CentOS  | 7       |
+| Language        | PHP     | 7.3     |
+| Server software | Nginx   | 1.19.10 |
+| Database        | MySQL   | 5.7     |
+| Framework       | laravel | 6.0     |
 <br />
 
 ## ＜Index＞
