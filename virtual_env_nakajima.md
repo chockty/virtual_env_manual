@@ -62,7 +62,7 @@
 - ① 作業用ディレクトリの作成。
 （場所の指定はありませんが、自分がアクセスしやすい場所がおすすめです。）<br />
 実行コマンド：
-  ```
+  ```shell
   $ mkdir ディレクトリ名
   ```
     **<span style="color: red; ">!!caution!!</span> 作成したディレクトリを移動させると、後ほどゲストOSにログインができなくなる可能性があるので注意してください。**
@@ -70,7 +70,7 @@
 
 - ② ①で作成したディレクトリに入り、ゲストOSを初期化する。
 実行コマンド：
-  ```
+  ```shell
   $ cd ①で作成したディレクトリ
 
   # 本手順書では、0. 前提条件でインストールしたCentOS 7 を指定しております。
@@ -87,14 +87,14 @@
 - ③ Vagrantfileの編集
 vagrantの基本設定が記述されているVagrantfileを編集します。
 実行コマンド：
-  ```
+  ```shell
   $ vi Vagrantfile
 
   # ファイルの内容が表示されたら「i」キーを押して「INSERT」モードに切り替えてください。
   ```
   変更内容：
     (1) 以下の内容をコメントイン（#を外す）する
-    ```
+    ```shell
     config.vm.network "forwarded_port", guest: 80, host: 8080
     config.vm.network "private_network", ip: "192.168.33.19"
 
@@ -105,7 +105,7 @@ vagrantの基本設定が記述されているVagrantfileを編集します。
     <br />
 
     (2) 以下の内容を編集する（コメントインも実施してください）
-    ```
+    ```shell
     config.vm.synced_folder "../data", "/vagrant_data"
     # ↓ 以下に編集
     config.vm.synced_folder "./", "/vagrant", type:"virtualbox"
@@ -120,7 +120,7 @@ vagrant-vbguestを使用することによって、boxにインストールさ�
     <br />
 
   実行コマンド：
-  ```
+  ```shell
   $ vagrant plugin install vagrant-vbguest --plugin-version 0.21
 
   # 問題なくインストールされていれば、以下のコマンドの実行後に「vagrant-vbguest」が表示されます。
@@ -132,7 +132,7 @@ vagrant-vbguestを使用することによって、boxにインストールさ�
 - ⑤ ゲストOSの起動 / ログイン
 ゲストOSを起動し実際にログインしてみます。
     実行コマンド：
-    ```
+    ```shell
     $ vagrant up # 起動コマンド
     $ vagrant status # 状態確認コマンド
 
@@ -158,7 +158,7 @@ vagrant-vbguestを使用することによって、boxにインストールさ�
 - ① パッケージのインストール
 gitなど開発に必要なツール群をインストールします。
   実行コマンド：
-  ```
+  ```shell
   $ sudo yum -y groupinstall "development tools"
   ```
   <br />
@@ -166,7 +166,7 @@ gitなど開発に必要なツール群をインストールします。
 - ② PHPのインストール
 PHPを動かすためのツールをインストールします。
   実行コマンド：
-  ```
+  ```shell
   $ sudo yum -y install epel-release wget
   $ sudo wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
   $ sudo rpm -Uvh remi-release-7.rpm
@@ -183,7 +183,7 @@ PHPを動かすためのツールをインストールします。
 - ③ composerのインストール
 PHPで使用するライブラリの依存関係を管理するcomposerをインストールします。
   実行コマンド：
-  ```
+  ```shell
   $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
   $ php composer-setup.php
   $ php -r "unlink('composer-setup.php');"
@@ -201,7 +201,7 @@ PHPで使用するライブラリの依存関係を管理するcomposerをイン
 - ① インストール準備
 Nginxの最新版をインストールできるように事前に設定を行います。
 実行コマンド：
-  ```
+  ```shell
   $ sudo vi /etc/yum.repos.d/nginx.repo
   # ファイルの内容が表示されたら「i」キーを押して「INSERT」モードに切り替えてください。
   # 編集前のファイルは空ですが問題ございません。
@@ -218,7 +218,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
   ```
 - ② Nginxのインストール及び起動確認
 実行コマンド：
-  ```
+  ```shell
   $ sudo yum install -y nginx
 
   # 以下のコマンドを実行してnginxのバージョン情報が表示されましたらインストール成功です。
@@ -240,7 +240,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
 **!!caution!! 実行場所：ゲストOS内 パス：/home/vagrant**
 - ① Mysqlの導入
 実行コマンド：
-  ```
+  ```shell
   $ sudo wget https://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
   $ sudo rpm -Uvh mysql57-community-release-el7-7.noarch.rpm
   $ sudo yum install -y mysql-community-server
@@ -252,7 +252,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
 
 - ② Mysqlの設定
 実行コマンド：
-  ```
+  ```shell
   $ sudo systemctl start mysqld
   $ sudo systemctl status mysqld
   # コマンド実行の結果、「Active: active (running) since 〜」と表示されていれば起動成功です。
@@ -278,7 +278,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
   
   Mysqlは初回ログインの際にパスワードを設定する必要がありますので、コマンドを投入して設定します。<br />
   実行コマンド：
-  ```
+  ```sql
   mysql > set password = "新たなpassword";
   # 新しいパスワードの条件：大文字小文字の英数字 + 記号かつ8文字以上
   ```
@@ -290,7 +290,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
   <br />
 
   実行コマンド：
-  ```
+  ```sql
   mysql > create database 任意のデータベース名;
   mysql > show databases;
   ```
@@ -303,7 +303,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
   もしパスワードの条件を簡単なものへ変更したい場合は以下の設定を実施してください。
   <br />
 
-  ```
+  ```shell
   $ sudo vi /etc/my.cnf
 
   # 以下の通り編集してください。
@@ -329,7 +329,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
 - ① Laravelのプロジェクト作成
 ゲストOS上でlaravelのプロジェクトを作成し、マイグレーションを実施します。<br />
     実行コマンド(1:プロジェクト作成)：
-    ```
+    ```shell
     $ cd /vagrant
     $ composer create-project laravel/laravel=6.0 --prefer-dist プロジェクト名
     ```
@@ -341,7 +341,7 @@ Nginxの最新版をインストールできるように事前に設定を行い
 - ② データベース連携の設定
 laravelとMysqlを接続するためにlaravel側の設定を編集します。
   実行コマンド：
-  ```
+  ```shell
   $ vi /vagrant/作成したlaravelプロジェクト名/.env
 
   # ファイルの内容が表示されたら「i」キーを押して「INSERT」モードに切り替えてください。
@@ -355,7 +355,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
 
 - ③ マイグレーション実行
   実行コマンド:
-  ```
+  ```shell
   $ cd 作成したlaravelプロジェクト名
   $ php artisan migrate
   ```
@@ -370,7 +370,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
 - ④ nginx / php-fpmの設定
 構築した環境上でlaravelを動かすための設定をします。<br />
   実行コマンド(1：nginx側の設定)：
-    ```
+    ```shell
     $ sudo vi /etc/nginx/conf.d/default.conf
     # ファイルの内容が表示されたら「i」キーを押して「INSERT」モードに切り替えてください。
 
@@ -404,7 +404,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
     <br />
 
     実行コマンド(2：php-fpm側の設定):
-    ```
+    ```shell
     $ sudo vi /etc/php-fpm.d/www.conf
     # ファイルの内容が表示されたら「i」キーを押して「INSERT」モードに切り替えてください。
 
@@ -419,7 +419,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
   
 - ④ 起動確認
 実行コマンド：
-  ```
+  ```shell
   $ sudo systemctl restart nginx
   $ sudo systemctl status nginx
   $ sudo systemctl start php-fpm
@@ -441,7 +441,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
   <br />
 
   実行コマンド：
-  ```
+  ```shell
   $ sudo vi /etc/selinux/config
   # ファイルの内容が表示されたら「i」キーを押して「INSERT」モードに切り替えてください。
 
@@ -473,7 +473,7 @@ laravelとMysqlを接続するためにlaravel側の設定を編集します。
 laravelに認証機能を実装します。
   実行コマンド：
   ※以下のコマンドはlaravel 6.0に対応した方法です。
-  ```
+  ```shell
   $ composer require laravel/ui "^1.0" --dev
   $ php artisan ui vue --auth
   ```
